@@ -1,9 +1,8 @@
 from typing import List, Union
-from helpers.klib import kdict
+from .misc import kdict
 import click
 import re
 import os
-from helpers import klib
 
 
 class UnlimitedNargsOption(click.Option):
