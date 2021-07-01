@@ -6,6 +6,7 @@ import wandb
 
 
 class CustomWandbLogger(WandbLogger):
+    """Wrapper around the WandbLogger that logs model checkpoints without the folder structure for easier access."""
     @rank_zero_only
     def finalize(self, status: str) -> None:
         """Overwrite to enable saving without directory structure"""
