@@ -70,19 +70,19 @@ def process_click_args(ctx: click.Context, cmd_args: dict) -> kdict:
             ctx.fail("GPUs were requested but machine has no CUDA!")
         # torch.cudnn.enabled = True
         # torch.cudnn.benchmark = True
-        cmd_args.accelerator = 'ddp'
+        cmd_args.strategy = 'ddp'
         print(
             f"Training on GPUs: {cmd_args.gpus if cmd_args.gpus != -1 else 'All available'}")
         # experienced "deadlock" bug with the standard nccl backend
         # os.environ["PL_TORCH_DISTRIBUTED_BACKEND"] = "gloo"
     else:
         print("Training on CPU")
-        cmd_args.accelerator = None
+        cmd_args.strategy = None
     return cmd_args
 
 
 def int_sequence(cmd_input: List[str]) -> Union[List[int], int]:
-    '''Accepts the following when used in combindation with `cls=UnlimitedNargsOption`: 
+    '''Accepts the following when used in combination with `cls=UnlimitedNargsOption`: 
       - Space-separated numbers like `0 1 2 4 7` -> `[0, 1, 2, 4, 7]`
       - Comma-separated numbers like `0,1,2,4,7` -> `[0, 1, 2, 4, 7]`
       - Range of numbers like `0-2` -> `[0, 1, 2]`
