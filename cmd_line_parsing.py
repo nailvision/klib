@@ -82,7 +82,7 @@ def process_click_args(ctx: click.Context, cmd_args: dict) -> kdict:
 
 
 def int_sequence(cmd_input: List[str]) -> Union[List[int], int]:
-    '''Accepts the following when used in combination with `cls=UnlimitedNargsOption`: 
+    '''Accepts the following when used in combination with `cls=UnlimitedNargsOption`:
       - Space-separated numbers like `0 1 2 4 7` -> `[0, 1, 2, 4, 7]`
       - Comma-separated numbers like `0,1,2,4,7` -> `[0, 1, 2, 4, 7]`
       - Range of numbers like `0-2` -> `[0, 1, 2]`

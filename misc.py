@@ -1,8 +1,9 @@
-from typing import Any, Hashable
 import os
+from typing import Any, Hashable
+
+import wandb
 from pytorch_lightning.loggers.wandb import WandbLogger
 from pytorch_lightning.utilities.distributed import rank_zero_only
-import wandb
 
 
 class CustomWandbLogger(WandbLogger):
