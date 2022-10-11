@@ -70,14 +70,14 @@ def process_click_args(ctx: click.Context, cmd_args: dict) -> kdict:
             ctx.fail("GPUs were requested but machine has no CUDA!")
         # torch.cudnn.enabled = True
         # torch.cudnn.benchmark = True
-        cmd_args.strategy = 'cuda'
+        # cmd_args.strategy = 'cuda'
         print(
             f"Training on GPUs: {cmd_args.gpus if cmd_args.gpus != -1 else 'All available'}")
         # experienced "deadlock" bug with the standard nccl backend
         # os.environ["PL_TORCH_DISTRIBUTED_BACKEND"] = "gloo"
     else:
         print("Training on CPU")
-        cmd_args.strategy = None
+        # cmd_args.strategy = None
     return cmd_args
 
 
