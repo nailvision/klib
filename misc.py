@@ -8,6 +8,7 @@ from pytorch_lightning.utilities.distributed import rank_zero_only
 
 class CustomWandbLogger(WandbLogger):
     """Wrapper around the WandbLogger that logs model checkpoints without the folder structure for easier access."""
+
     @rank_zero_only
     def finalize(self, status: str) -> None:
         """Overwrite to enable saving without directory structure"""
@@ -16,8 +17,10 @@ class CustomWandbLogger(WandbLogger):
             save_glob = os.path.join(self.save_dir, "*.ckpt")
             wandb.save(save_glob, os.path.dirname(save_glob))
 
+
 def push_file_to_wandb(filepath):
     wandb.save(filepath, os.path.dirname(filepath))
+
 
 class kdict(dict):
     """Wrapper around the native dict class that allows access via dot syntax and JS-like behavior for KeyErrors."""
@@ -36,4 +39,3 @@ class kdict(dict):
 
     def __dir__(self):
         return self.keys()
-
